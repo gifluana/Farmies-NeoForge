@@ -1,0 +1,13 @@
+{
+  "itemGroup.farmies": "Example Mod Tab",
+  "block.farmies.example_block": "Example Block",
+  "item.farmies.example_item": "Example Item",
+
+  "farmies.configuration.title": "Farmies Configs",
+  "farmies.configuration.section.farmies.common.toml": "Farmies Configs",
+  "farmies.configuration.section.farmies.common.toml.title": "Farmies Configs",
+  "farmies.configuration.items": "Item List",
+  "farmies.configuration.logDirtBlock": "Log Dirt Block",
+  "farmies.configuration.magicNumberIntroduction": "Magic Number Text",
+  "farmies.configuration.magicNumber": "Magic Number"
+}
