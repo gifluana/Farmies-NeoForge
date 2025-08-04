@@ -1,0 +1,39 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "farmies:block/crops/strawberries",
+		"particle": "farmies:block/crops/strawberries"
+	},
+	"elements": [
+		{
+			"from": [3.5, -1, 8],
+			"to": [12.5, 9, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [8, 0, 12.5, 5], "texture": "#1"},
+				"south": {"uv": [12.5, 0, 8, 5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [3.5, -1, 8],
+			"to": [12.5, 9, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [8, 0, 12.5, 5], "texture": "#1"},
+				"south": {"uv": [12.5, 0, 8, 5], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "stage_1",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

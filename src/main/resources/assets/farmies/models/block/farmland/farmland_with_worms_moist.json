@@ -1,0 +1,9 @@
+{
+  "parent": "farmies:block/template/farmland_with_worms_template",
+  "textures": {
+    "bottom": "minecraft:block/dirt",
+    "top": "farmies:block/farmland/farmland_with_worms_top_moist",
+    "side": "farmies:block/farmland/farmland_with_worms_side_moist",
+    "worm": "farmies:block/farmland/worm"
+  }
+}

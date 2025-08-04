@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=1": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=2": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=3": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=4": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=5": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=6": {
+      "model": "farmies:block/farmland/fertilized_farmland_dry"
+    },
+    "moisture=7": {
+      "model": "farmies:block/farmland/fertilized_farmland_moist"
+    }
+  }
+}

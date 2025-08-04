@@ -1,0 +1,76 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "farmies:block/crops/tomatoes",
+		"particle": "farmies:block/crops/tomatoes"
+	},
+	"elements": [
+		{
+			"name": "tomatoes_s3",
+			"from": [3, 0, 8],
+			"to": [13, 11, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 5.5, 8]},
+			"faces": {
+				"north": {"uv": [8, 0, 13, 5.5], "texture": "#2"},
+				"south": {"uv": [8, 0, 13, 5.5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "tomatoes_s3",
+			"from": [3, 0, 8],
+			"to": [13, 11, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 5.5, 8]},
+			"faces": {
+				"north": {"uv": [13, 0, 8, 5.5], "texture": "#2"},
+				"south": {"uv": [8, 0, 13, 5.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 5, 8],
+			"to": [11, 5, 12],
+			"rotation": {"angle": 45, "axis": "x", "origin": [9, 5, 10]},
+			"faces": {
+				"up": {"uv": [10, 7.5, 8, 5.5], "texture": "#2"},
+				"down": {"uv": [10, 5.5, 8, 7.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [8.5, 8.25, 6],
+			"to": [12.5, 8.25, 10],
+			"rotation": {"angle": -45, "axis": "z", "origin": [10.5, 8.25, 8]},
+			"faces": {
+				"up": {"uv": [10, 7.5, 8, 5.5], "texture": "#2"},
+				"down": {"uv": [10, 5.5, 8, 7.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [4, 9, 5],
+			"to": [8, 9, 9],
+			"rotation": {"angle": 45, "axis": "z", "origin": [6, 9, 7]},
+			"faces": {
+				"up": {"uv": [10, 7.5, 8, 5.5], "texture": "#2"},
+				"down": {"uv": [10, 5.5, 8, 7.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 4, 3],
+			"to": [11, 4, 7],
+			"rotation": {"angle": -45, "axis": "x", "origin": [9, 4, 5]},
+			"faces": {
+				"up": {"uv": [10, 7.5, 8, 5.5], "texture": "#2"},
+				"down": {"uv": [10, 5.5, 8, 7.5], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "tomatoes_s3",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5]
+		}
+	]
+}

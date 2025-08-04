@@ -1,0 +1,40 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "farmies:block/crops/tomatoes",
+		"particle": "farmies:block/crops/tomatoes"
+	},
+	"elements": [
+		{
+			"name": "tomatoes_s1",
+			"from": [4, 0, 8],
+			"to": [12, 4, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [5, 8, 9, 10], "texture": "#2"},
+				"south": {"uv": [5, 8, 9, 10], "texture": "#2"}
+			}
+		},
+		{
+			"name": "tomatoes_s1",
+			"from": [4, 0, 8],
+			"to": [12, 4, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [9, 8, 5, 10], "texture": "#2"},
+				"south": {"uv": [5, 8, 9, 10], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "tomatoes_s1",
+			"origin": [8, 1, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

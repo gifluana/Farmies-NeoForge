@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "farmies:farmland_with_worms",
+    "farmies:fertilized_farmland"
+  ]
+}

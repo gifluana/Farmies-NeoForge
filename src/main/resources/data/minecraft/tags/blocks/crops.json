@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "farmies:lettuces",
+    "farmies:onions",
+    "farmies:tomatoes",
+    "farmies:garlics"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"1": "farmies:block/crops/bellpeppers",
+		"particle": "farmies:block/crops/bellpeppers"
+	},
+	"elements": [
+		{
+			"from": [6, -1, 8],
+			"to": [10, 5, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [4, 5, 5, 6.5], "texture": "#1"},
+				"south": {"uv": [5, 5, 4, 6.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [6, -1, 8],
+			"to": [10, 5, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [4, 5, 5, 6.5], "texture": "#1"},
+				"south": {"uv": [5, 5, 4, 6.5], "texture": "#1"}
+			}
+		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "stage_0",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

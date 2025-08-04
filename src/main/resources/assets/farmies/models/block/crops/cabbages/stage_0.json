@@ -1,0 +1,40 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"2": "farmies:block/crops/cabbage",
+		"particle": "farmies:block/crops/cabbage"
+	},
+	"elements": [
+		{
+			"from": [8, -1, 4.5],
+			"to": [8, 6, 11.5],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 2.5, 8]},
+			"faces": {
+				"east": {"uv": [0, 10.25, 1.75, 12], "texture": "#2"},
+				"west": {"uv": [1.75, 10.25, 0, 12], "texture": "#2"}
+			}
+		},
+		{
+			"from": [4.5, -1, 8],
+			"to": [11.5, 6, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 2.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 10.25, 1.75, 12], "texture": "#2"},
+				"south": {"uv": [1.75, 10.25, 0, 12], "texture": "#2"}
+			}
+		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "stage_0",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

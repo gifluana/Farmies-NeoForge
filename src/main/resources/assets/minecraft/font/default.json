@@ -1,0 +1,9 @@
+{"providers":[
+        {
+            "type": "bitmap",
+            "file": "minecraft:custom/tab.png",
+            "ascent": 10,
+            "height": 13,
+            "chars": ["\uE800"]
+        }
+]}

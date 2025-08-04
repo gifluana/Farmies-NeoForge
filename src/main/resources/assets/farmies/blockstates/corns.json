@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "age=0,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_0_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_0_bottom",
+        "y": 180
+      }
+    ],
+    "age=1,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_1_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_1_bottom",
+        "y": 180
+      }
+    ],
+    "age=2,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_1_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_1_bottom",
+        "y": 180
+      }
+    ],
+    "age=3,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_2_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_2_bottom",
+        "y": 180
+      }
+    ],
+    "age=4,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_2_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_2_bottom",
+        "y": 180
+      }
+    ],
+    "age=5,half=lower": [
+      {
+        "model": "farmies:block/crops/corn/stage_3_bottom"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_3_bottom",
+        "y": 180
+      }
+    ],
+    "age=0,half=upper": {
+      "model": "farmies:block/crops/corn/air"
+    },
+    "age=1,half=upper": {
+      "model": "farmies:block/crops/corn/air"
+    },
+    "age=2,half=upper": {
+      "model": "farmies:block/crops/corn/air"
+    },
+    "age=3,half=upper": [
+      {
+        "model": "farmies:block/crops/corn/stage_2_top"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_2_top",
+        "y": 180
+      }
+    ],
+    "age=4,half=upper": [
+      {
+        "model": "farmies:block/crops/corn/stage_2_top"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_2_top",
+        "y": 180
+      }
+    ],
+    "age=5,half=upper": [
+      {
+        "model": "farmies:block/crops/corn/stage_3_top"
+      },
+      {
+        "model": "farmies:block/crops/corn/stage_3_top",
+        "y": 180
+      }
+    ]
+  }
+}

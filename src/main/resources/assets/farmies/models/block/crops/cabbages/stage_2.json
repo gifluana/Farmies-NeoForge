@@ -1,0 +1,139 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"2": "farmies:block/crops/cabbage",
+		"particle": "farmies:block/crops/cabbage"
+	},
+	"elements": [
+		{
+			"from": [5, -1, 5],
+			"to": [11, 5, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [6, 2, 7.5, 3.5], "texture": "#2"},
+				"east": {"uv": [6, 3.5, 7.5, 5], "texture": "#2"},
+				"south": {"uv": [4, 6, 5.5, 7.5], "texture": "#2"},
+				"west": {"uv": [6, 5, 7.5, 6.5], "texture": "#2"},
+				"up": {"uv": [7, 8, 5.5, 6.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [4.75, -1.25, 4.75],
+			"to": [11.25, 5.25, 11.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [7, 6.5, 8.5, 8], "texture": "#2"},
+				"east": {"uv": [7.5, 2, 9, 3.5], "texture": "#2"},
+				"south": {"uv": [7.5, 3.5, 9, 5], "texture": "#2"},
+				"west": {"uv": [4, 7.5, 5.5, 9], "texture": "#2"},
+				"up": {"uv": [9, 6.5, 7.5, 5], "texture": "#2"},
+				"down": {"uv": [1.5, 8, 0, 9.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [5, -1, 3],
+			"to": [11, 5, 5],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, -1, 5]},
+			"faces": {
+				"east": {"uv": [9, 2.5, 9.5, 4], "texture": "#2"},
+				"south": {"uv": [8, 0, 9.5, 1.5], "texture": "#2"},
+				"west": {"uv": [3.75, 9, 4.25, 10.5], "texture": "#2"},
+				"up": {"uv": [10.5, 4.5, 9, 4], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cube inverted",
+			"from": [11, 5, 5],
+			"to": [5, -1, 3],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, -1, 5]},
+			"faces": {
+				"north": {"uv": [8, 1.5, 9.5, 0], "texture": "#2"},
+				"east": {"uv": [3.75, 10.5, 4.25, 9], "texture": "#2"},
+				"west": {"uv": [9, 4, 9.5, 2.5], "texture": "#2"},
+				"down": {"uv": [9, 4.5, 10.5, 4], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cube inverted",
+			"from": [11, 5, 13],
+			"to": [5, -1, 11],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, -1, 11]},
+			"faces": {
+				"east": {"uv": [4.25, 10.5, 3.75, 9], "texture": "#2"},
+				"south": {"uv": [9.5, 1.5, 8, 0], "texture": "#2"},
+				"west": {"uv": [9.5, 4, 9, 2.5], "texture": "#2"},
+				"down": {"uv": [9, 4, 10.5, 4.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [5, -1, 11],
+			"to": [11, 5, 13],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, -1, 11]},
+			"faces": {
+				"north": {"uv": [9.5, 0, 8, 1.5], "texture": "#2"},
+				"east": {"uv": [9.5, 2.5, 9, 4], "texture": "#2"},
+				"west": {"uv": [4.25, 9, 3.75, 10.5], "texture": "#2"},
+				"up": {"uv": [10.5, 4, 9, 4.5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cube inverted",
+			"from": [5, 5, 11],
+			"to": [3, -1, 5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [5, -1, 8]},
+			"faces": {
+				"north": {"uv": [9.5, 4, 9, 2.5], "texture": "#2"},
+				"south": {"uv": [4.25, 10.5, 3.75, 9], "texture": "#2"},
+				"west": {"uv": [9.5, 1.5, 8, 0], "texture": "#2"},
+				"down": {"uv": [9, 4, 10.5, 4.5], "rotation": 270, "texture": "#2"}
+			}
+		},
+		{
+			"from": [3, -1, 5],
+			"to": [5, 5, 11],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [5, -1, 8]},
+			"faces": {
+				"north": {"uv": [4.25, 9, 3.75, 10.5], "texture": "#2"},
+				"east": {"uv": [9.5, 0, 8, 1.5], "texture": "#2"},
+				"south": {"uv": [9.5, 2.5, 9, 4], "texture": "#2"},
+				"up": {"uv": [10.5, 4, 9, 4.5], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"from": [11, -1, 5],
+			"to": [13, 5, 11],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [11, -1, 8]},
+			"faces": {
+				"north": {"uv": [3.75, 9, 4.25, 10.5], "texture": "#2"},
+				"south": {"uv": [9, 2.5, 9.5, 4], "texture": "#2"},
+				"west": {"uv": [8, 0, 9.5, 1.5], "texture": "#2"},
+				"up": {"uv": [10.5, 4.5, 9, 4], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"name": "cube inverted",
+			"from": [13, 5, 11],
+			"to": [11, -1, 5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [11, -1, 8]},
+			"faces": {
+				"north": {"uv": [9, 4, 9.5, 2.5], "texture": "#2"},
+				"east": {"uv": [8, 1.5, 9.5, 0], "texture": "#2"},
+				"south": {"uv": [3.75, 10.5, 4.25, 9], "texture": "#2"},
+				"down": {"uv": [9, 4.5, 10.5, 4], "rotation": 270, "texture": "#2"}
+			}
+		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "stage_2",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		}
+	]
+}

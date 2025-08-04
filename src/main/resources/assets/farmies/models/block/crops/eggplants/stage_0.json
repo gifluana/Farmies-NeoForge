@@ -1,0 +1,39 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"2": "farmies:block/crops/eggplants",
+		"particle": "farmies:block/crops/eggplants"
+	},
+	"elements": [
+		{
+			"from": [4.5, -1, 8],
+			"to": [11.5, 4, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [1.5, 7.25, 3.25, 8.5], "texture": "#2"},
+				"south": {"uv": [3.25, 7.25, 1.5, 8.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [8, -1, 4.5],
+			"to": [8, 4, 11.5],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"east": {"uv": [3.25, 7.25, 1.5, 8.5], "texture": "#2"},
+				"west": {"uv": [1.5, 7.25, 3.25, 8.5], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "stage_0",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

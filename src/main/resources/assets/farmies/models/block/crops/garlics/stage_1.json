@@ -1,0 +1,75 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "farmies:block/crops/garlics",
+		"particle": "farmies:block/crops/garlics"
+	},
+	"elements": [
+		{
+			"from": [11, -1, -2],
+			"to": [11, 15, 10],
+			"rotation": {"angle": -45, "axis": "y", "origin": [11, 7, 4]},
+			"faces": {
+				"east": {"uv": [0, 0, 6, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 6, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5, -1, 4],
+			"to": [17, 15, 4],
+			"rotation": {"angle": -45, "axis": "y", "origin": [11, 7, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 8], "texture": "#1"},
+				"south": {"uv": [6, 0, 0, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, -1, 5],
+			"to": [8, 15, 17],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 7, 11]},
+			"faces": {
+				"east": {"uv": [6, 0, 0, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 6, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, -1, 11],
+			"to": [14, 15, 11],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 7, 11]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 8], "texture": "#1"},
+				"south": {"uv": [6, 0, 0, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5, -1, 1],
+			"to": [5, 15, 13],
+			"rotation": {"angle": -45, "axis": "y", "origin": [5, 7, 7]},
+			"faces": {
+				"east": {"uv": [6, 0, 0, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 6, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [-1, -1, 7],
+			"to": [11, 15, 7],
+			"rotation": {"angle": -45, "axis": "y", "origin": [5, 7, 7]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 8], "texture": "#1"},
+				"south": {"uv": [6, 0, 0, 8], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "stage_1",
+			"origin": [8, 7, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5]
+		}
+	]
+}

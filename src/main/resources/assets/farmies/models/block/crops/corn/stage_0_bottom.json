@@ -1,0 +1,39 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"1": "farmies:block/crops/corn",
+		"particle": "farmies:block/crops/corn"
+	},
+	"elements": [
+		{
+			"from": [5.5, -1, 8],
+			"to": [10.5, 9, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [0, 3, 1.25, 5.5], "texture": "#1"},
+				"south": {"uv": [1.25, 3, 0, 5.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, -1, 5.5],
+			"to": [8, 9, 10.5],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 4, 8]},
+			"faces": {
+				"east": {"uv": [0, 3, 1.25, 5.5], "texture": "#1"},
+				"west": {"uv": [1.25, 3, 0, 5.5], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "stage_0",
+			"origin": [8, 5, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}
