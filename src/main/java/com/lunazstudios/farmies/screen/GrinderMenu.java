@@ -31,8 +31,18 @@ public class GrinderMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 54, 34));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 104, 34));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 152, 62));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 104, 34) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 129, 38) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;
+            }
+        });
 
         addDataSlots(data);
     }
@@ -47,14 +57,6 @@ public class GrinderMenu extends AbstractContainerMenu {
         int arrowPixelSize = 24;
 
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
-    }
-
-    public int getScaledCrystalProgress() {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-        int crystalPixelSize = 16;
-
-        return maxProgress != 0 && progress != 0 ? progress * crystalPixelSize / maxProgress : 0;
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

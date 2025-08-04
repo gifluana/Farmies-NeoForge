@@ -1,0 +1,7 @@
+{
+  "type": "farmies:grinding",
+  "ingredient": { "item": "minecraft:wheat" },
+  "result": { "id": "farmies:wheat_flour", "count": 3 },
+  "extra_result": { "id": "minecraft:wheat_seeds", "count": 1 },
+  "extra_chance": 0.25
+}

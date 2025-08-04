@@ -1,7 +1,10 @@
 package com.lunazstudios.farmies.block.entity;
 
+import com.lunazstudios.farmies.recipe.GrinderRecipe;
+import com.lunazstudios.farmies.recipe.GrinderRecipeInput;
 import com.lunazstudios.farmies.registry.FBlockEntities;
 import com.lunazstudios.farmies.registry.FItems;
+import com.lunazstudios.farmies.registry.FRecipes;
 import com.lunazstudios.farmies.screen.GrinderMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -17,12 +20,15 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
@@ -93,11 +99,31 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(FItems.WHEAT_FLOUR.get());
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) return;
+        GrinderRecipe r = recipe.get().value();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
-        itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + output.getCount()));
+
+        mergeStack(OUTPUT_SLOT, r.outputItem());
+
+        if (!r.extraOutput().isEmpty() && level.random.nextFloat() < r.extraChance()) {
+            mergeStack(OUTPUT_EXTRA_SLOT, r.extraOutput());
+        }
+    }
+
+    private void mergeStack(int slot, ItemStack stackToAdd) {
+        ItemStack existing = itemHandler.getStackInSlot(slot);
+
+        if (existing.isEmpty()) {
+            itemHandler.setStackInSlot(slot, stackToAdd.copy());
+        } else if (ItemStack.isSameItemSameComponents(existing, stackToAdd)) {
+            int space = existing.getMaxStackSize() - existing.getCount();
+            int toMove = Math.min(space, stackToAdd.getCount());
+            if (toMove > 0) {
+                existing.grow(toMove);
+            }
+        }
     }
 
     private boolean hasCraftingFinished() {
@@ -114,11 +140,18 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        ItemStack input = new ItemStack(Items.WHEAT.asItem());
-        ItemStack output = new ItemStack(FItems.WHEAT_FLOUR.get());
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
 
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output) &&
-                this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == input.getItem();
+        ItemStack output = recipe.get().value().getResultItem(null);
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    }
+
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager().getRecipeFor(FRecipes.GRINDER_TYPE.get(), new GrinderRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

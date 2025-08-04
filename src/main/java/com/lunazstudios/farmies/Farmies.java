@@ -47,6 +47,7 @@ public class Farmies {
         FMenus.register(modEventBus);
         FItems.register(modEventBus);
         FTabs.register(modEventBus);
+        FRecipes.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
