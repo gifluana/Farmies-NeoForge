@@ -48,6 +48,34 @@ public class FTabs {
                         output.accept(FItems.CABBAGE_SEEDS.get());
                     }).build());
 
+    public static final Supplier<CreativeModeTab> INGREDIENTS_TAB =
+            CREATIVE_MODE_TABS.register("ingredients", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("item_group." + Farmies.MOD_ID + ".ingredients"))
+                    .icon(() -> new ItemStack(FItems.WHEAT_FLOUR.get()))
+                    .displayItems((pParameters, output) -> {
+                        output.accept(FItems.WHEAT_FLOUR.get());
+                        output.accept(FItems.DRIED_RED_BELLPEPPER.get());
+                        output.accept(FItems.PAPRIKA.get());
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> MACHINES_TAB =
+            CREATIVE_MODE_TABS.register("machines", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("item_group." + Farmies.MOD_ID + ".machines"))
+                    .icon(() -> new ItemStack(FBlocks.GRINDER.get()))
+                    .displayItems((pParameters, output) -> {
+                        output.accept(FBlocks.GRINDER.get());
+                        output.accept(FBlocks.COAL_GENERATOR.get());
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> TOOLS_TAB =
+            CREATIVE_MODE_TABS.register("tools", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("item_group." + Farmies.MOD_ID + ".tools"))
+                    .icon(() -> new ItemStack(FItems.SCYTHE.get()))
+                    .displayItems((pParameters, output) -> {
+                        output.accept(FItems.SCYTHE.get());
+
+                    }).build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

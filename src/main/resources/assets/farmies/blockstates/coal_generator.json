@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "farmies:block/machines/coal_generator"
+    },
+    "facing=east": {
+      "model": "farmies:block/machines/coal_generator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "farmies:block/machines/coal_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farmies:block/machines/coal_generator",
+      "y": 270
+    }
+  }
+}

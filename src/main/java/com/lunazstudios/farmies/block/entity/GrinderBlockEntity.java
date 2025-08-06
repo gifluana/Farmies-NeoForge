@@ -1,12 +1,13 @@
 package com.lunazstudios.farmies.block.entity;
 
+import com.lunazstudios.farmies.energy.FEnergyStorage;
 import com.lunazstudios.farmies.recipe.GrinderRecipe;
 import com.lunazstudios.farmies.recipe.GrinderRecipeInput;
 import com.lunazstudios.farmies.registry.FBlockEntities;
-import com.lunazstudios.farmies.registry.FItems;
 import com.lunazstudios.farmies.registry.FRecipes;
 import com.lunazstudios.farmies.screen.GrinderMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -19,11 +20,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -39,6 +41,78 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return slot == INPUT_SLOT;
+        }
+    };
+
+    private final IItemHandler topHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return itemHandler.getSlots();
+        }
+
+        @Override
+        public @NotNull ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot);
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return slot == INPUT_SLOT ? itemHandler.insertItem(slot, stack, simulate) : stack;
+        }
+
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return slot == INPUT_SLOT;
+        }
+    };
+
+    private final IItemHandler bottomHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return itemHandler.getSlots();
+        }
+
+        @Override
+        public @NotNull ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot);
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return stack;
+        }
+
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot == OUTPUT_SLOT || slot == OUTPUT_EXTRA_SLOT) {
+                return itemHandler.extractItem(slot, amount, simulate);
+            }
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false;
+        }
     };
 
     private static final int INPUT_SLOT = 0;
@@ -47,8 +121,24 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 100;
-    private final int DEFAULT_MAX_PROGRESS = 100;
+    private int maxProgress = 50;
+    private final int DEFAULT_MAX_PROGRESS = 50;
+
+    private static final int ENERGY_CRAFT_AMOUNT = 25;
+
+    private final FEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private FEnergyStorage createEnergyStorage() {
+        return new FEnergyStorage(64000, 320) {
+            @Override
+            public void onEnergyChanged() {
+                setChanged();
+                getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        };
+    }
+
+    public float cogRotation = 0f;
+    public float cogSpeed = 0f;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(FBlockEntities.GRINDER_BE.get(), pos, state);
@@ -77,11 +167,34 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         };
     }
 
+    public boolean isAnimating() {
+        return progress > 0 || (hasInput() && ENERGY_STORAGE.getEnergyStored() > 0);
+    }
+
+    private boolean hasInput() {
+        return !itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
+    }
+
+    public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        return this.ENERGY_STORAGE;
+    }
+
+    public IItemHandler getItemHandler(@Nullable Direction direction) {
+        if (direction == Direction.UP) {
+            return topHandler;
+        } else if (direction == Direction.DOWN) {
+            return bottomHandler;
+        } else {
+            return null;
+        }
+    }
+
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
 
         if (hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             increaseCraftingProgress();
+            useEnergyForCrafting();
             setChanged(level, pos, state);
 
             if (hasCraftingFinished()) {
@@ -91,6 +204,26 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         } else {
             resetProgress();
         }
+    }
+
+    public void clientTick(Level level, BlockPos pos, BlockState state) {
+        boolean animating = isAnimating();
+
+        float targetSpeed = animating ? 50f : 0f;
+        float accel = 0.5f;
+
+        if (cogSpeed < targetSpeed) {
+            cogSpeed = Math.min(cogSpeed + accel, targetSpeed);
+        } else if (cogSpeed > targetSpeed) {
+            cogSpeed = Math.max(cogSpeed - accel, targetSpeed);
+        }
+
+        cogRotation += cogSpeed;
+        if (cogRotation > 360f) cogRotation -= 360f;
+    }
+
+    private void useEnergyForCrafting() {
+        this.ENERGY_STORAGE.extractEnergy(ENERGY_CRAFT_AMOUNT, false);
     }
 
     private void resetProgress() {
@@ -146,8 +279,11 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         ItemStack output = recipe.get().value().getResultItem(null);
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output) && hasEnoughEnergyToCraft();
+    }
 
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    private boolean hasEnoughEnergyToCraft() {
+        return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_CRAFT_AMOUNT * maxProgress;
     }
 
     private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe() {
@@ -168,10 +304,13 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+
         this.progress = tag.getInt("grinder.progress");
         this.maxProgress = tag.getInt("grinder.max_progress");
         this.itemHandler.deserializeNBT(provider, tag.getCompound("inventory"));
-        super.loadAdditional(tag, provider);
+
+        this.ENERGY_STORAGE.setEnergy(tag.getInt("grinder.energy"));
     }
 
     @Override
@@ -179,6 +318,9 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         tag.put("inventory", itemHandler.serializeNBT(provider));
         tag.putInt("grinder.progress", this.progress);
         tag.putInt("grinder.max_progress", this.maxProgress);
+
+        tag.putInt("grinder.energy", ENERGY_STORAGE.getEnergyStored());
+
         super.saveAdditional(tag, provider);
     }
 

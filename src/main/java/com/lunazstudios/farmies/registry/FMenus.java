@@ -1,6 +1,7 @@
 package com.lunazstudios.farmies.registry;
 
 import com.lunazstudios.farmies.Farmies;
+import com.lunazstudios.farmies.screen.CoalGeneratorMenu;
 import com.lunazstudios.farmies.screen.GrinderMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -17,6 +18,9 @@ public class FMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU =
             registerMenuType("grinder_menu", GrinderMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
+            registerMenuType("coal_generator_menu", CoalGeneratorMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

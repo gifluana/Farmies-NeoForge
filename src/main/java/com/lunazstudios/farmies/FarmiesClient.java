@@ -1,6 +1,11 @@
 package com.lunazstudios.farmies;
 
+import com.lunazstudios.farmies.client.model.GrinderCogModel;
+import com.lunazstudios.farmies.client.renderer.GrinderRenderer;
+import com.lunazstudios.farmies.registry.FBlockEntities;
 import com.lunazstudios.farmies.registry.FMenus;
+import com.lunazstudios.farmies.screen.CoalGeneratorMenu;
+import com.lunazstudios.farmies.screen.CoalGeneratorScreen;
 import com.lunazstudios.farmies.screen.GrinderScreen;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -9,6 +14,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -22,11 +28,22 @@ public class FarmiesClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-
+ 
     }
 
     @SubscribeEvent
     static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(FMenus.GRINDER_MENU.get(), GrinderScreen::new);
+        event.register(FMenus.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
+    }
+
+    @SubscribeEvent
+    static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(FBlockEntities.GRINDER_BE.get(), GrinderRenderer::new);
+    }
+
+    @SubscribeEvent
+    static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(GrinderCogModel.LAYER_LOCATION, GrinderCogModel::createBodyLayer);
     }
 }

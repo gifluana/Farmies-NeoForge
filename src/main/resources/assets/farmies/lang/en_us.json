@@ -1,6 +1,9 @@
 {
   "item_group.farmies.seeds": "§f\uE800§r - Seeds",
   "item_group.farmies.produces": "§f\uE800§r - Produces",
+  "item_group.farmies.ingredients": "§f\uE800§r - Ingredients",
+  "item_group.farmies.machines": "§f\uE800§r - Machines",
+  "item_group.farmies.tools": "§f\uE800§r - Tools",
 
   "item.farmies.tomato_seeds": "Tomato Seeds",
   "item.farmies.lettuce_seeds": "Lettuce Seeds",
@@ -24,6 +27,10 @@
   "item.farmies.strawberry": "Strawberry",
   "item.farmies.cabbage": "Cabbage",
 
+  "item.farmies.wheat_flour": "Wheat Flour",
+  "item.farmies.dried_red_bellpepper": "Dried Red Bell Pepper",
+  "item.farmies.paprika": "Paprika",
+
   "block.farmies.tomatoes": "Tomatoes",
   "block.farmies.lettuces": "Lettuces",
   "block.farmies.onions": "Onions",
@@ -35,5 +42,10 @@
   "block.farmies.cabbages": "Cabbages",
 
   "block.farmies.farmland_with_worms": "Farmland With Worms",
-  "block.farmies.fertilized_farmland": "Fertilized Farmland"
+  "block.farmies.fertilized_farmland": "Fertilized Farmland",
+  "block.farmies.grinder": "Grinder",
+  "block.farmies.coal_generator": "Coal Generator",
+
+  "blockentity.farmies.grinder": "Grinder",
+  "blockentity.farmies.coal_generator": "Coal Generator"
 }

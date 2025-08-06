@@ -33,6 +33,7 @@ public class FBlocks {
     public static final DeferredBlock<Block> CABBAGES = registerBlockOnly("cabbages", () -> new CabbageCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
     // Machines
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator", () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> GRINDER = registerBlock("grinder", () -> new GrinderBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
     // Helper Methods

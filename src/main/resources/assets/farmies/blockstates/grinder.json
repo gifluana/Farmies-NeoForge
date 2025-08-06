@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "farmies:block/machines/grinder"
+    },
+    "facing=east": {
+      "model": "farmies:block/machines/grinder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "farmies:block/machines/grinder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farmies:block/machines/grinder",
+      "y": 270
+    }
+  }
+}
