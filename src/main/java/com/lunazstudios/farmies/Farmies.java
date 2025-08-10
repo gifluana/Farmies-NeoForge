@@ -47,6 +47,7 @@ public class Farmies {
         FMenus.register(modEventBus);
         FItems.register(modEventBus);
         FTabs.register(modEventBus);
+        FSounds.register(modEventBus);
         FRecipes.register(modEventBus);
     }
 

@@ -14,6 +14,14 @@ public class FTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Farmies.MOD_ID);
 
+    public static final Supplier<CreativeModeTab> FOODS_TAB =
+            CREATIVE_MODE_TABS.register("foods", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("item_group." + Farmies.MOD_ID + ".foods"))
+                    .icon(() -> new ItemStack(FItems.FRIED_EGG.get()))
+                    .displayItems((pParameters, output) -> {
+                        output.accept(FItems.FRIED_EGG.get());
+                    }).build());
+
     public static final Supplier<CreativeModeTab> PRODUCES_TAB =
             CREATIVE_MODE_TABS.register("produces", () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group." + Farmies.MOD_ID + ".produces"))
@@ -63,8 +71,11 @@ public class FTabs {
                     .title(Component.translatable("item_group." + Farmies.MOD_ID + ".machines"))
                     .icon(() -> new ItemStack(FBlocks.GRINDER.get()))
                     .displayItems((pParameters, output) -> {
-                        output.accept(FBlocks.GRINDER.get());
                         output.accept(FBlocks.COAL_GENERATOR.get());
+                        output.accept(FBlocks.GRINDER.get());
+                        output.accept(FBlocks.DEHYDRATOR.get());
+                        output.accept(FBlocks.FRYING_PAN.get());
+                        output.accept(FBlocks.COOKING_POT.get());
                     }).build());
 
     public static final Supplier<CreativeModeTab> TOOLS_TAB =

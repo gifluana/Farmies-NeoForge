@@ -17,6 +17,8 @@ public class FBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(Farmies.MOD_ID);
 
+    public static final DeferredBlock<Block> TEST_BLOCK = registerBlock("test_block", () -> new TestBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
     // Farmlands
     public static final DeferredBlock<Block> FERTILIZED_FARMLAND = registerBlock("fertilized_farmland", () -> new FertilizedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
     public static final DeferredBlock<Block> FARMLAND_WITH_WORMS = registerBlock("farmland_with_worms", () -> new FarmlandWithWormsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
@@ -35,6 +37,11 @@ public class FBlocks {
     // Machines
     public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator", () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> GRINDER = registerBlock("grinder", () -> new GrinderBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> DEHYDRATOR = registerBlock("dehydrator", () -> new DehydratorBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    // Utensils
+    public static final DeferredBlock<Block> FRYING_PAN = registerBlock("frying_pan", () -> new FryingPanBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> COOKING_POT = registerBlock("cooking_pot", () -> new CookingPotBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
     // Helper Methods
     private static <T extends Block> DeferredBlock<T> registerBlockOnly(String name, Supplier<T> block) {

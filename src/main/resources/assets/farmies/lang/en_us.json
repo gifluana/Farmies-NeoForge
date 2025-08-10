@@ -4,6 +4,7 @@
   "item_group.farmies.ingredients": "§f\uE800§r - Ingredients",
   "item_group.farmies.machines": "§f\uE800§r - Machines",
   "item_group.farmies.tools": "§f\uE800§r - Tools",
+  "item_group.farmies.foods": "§f\uE800§r - Foods",
 
   "item.farmies.tomato_seeds": "Tomato Seeds",
   "item.farmies.lettuce_seeds": "Lettuce Seeds",
@@ -30,6 +31,8 @@
   "item.farmies.wheat_flour": "Wheat Flour",
   "item.farmies.dried_red_bellpepper": "Dried Red Bell Pepper",
   "item.farmies.paprika": "Paprika",
+
+  "item.farmies.fried_egg": "Fried Egg",
 
   "block.farmies.tomatoes": "Tomatoes",
   "block.farmies.lettuces": "Lettuces",

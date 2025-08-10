@@ -1,0 +1,9 @@
+{
+  "type": "farmies:cooking",
+  "ingredients": [
+    { "item": "minecraft:egg" },
+    { "item": "minecraft:cobblestone" },
+    { "item": "minecraft:diamond" }
+  ],
+  "result": { "id": "minecraft:bread", "count": 1 }
+}

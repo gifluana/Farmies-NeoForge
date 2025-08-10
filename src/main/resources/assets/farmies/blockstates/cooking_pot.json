@@ -1,0 +1,13 @@
+{
+  "multipart": [
+    { "when": { "facing": "north" }, "apply": { "model": "farmies:block/utensils/cooking_pot" } },
+    { "when": { "facing": "east"  }, "apply": { "model": "farmies:block/utensils/cooking_pot", "y": 90 } },
+    { "when": { "facing": "south" }, "apply": { "model": "farmies:block/utensils/cooking_pot", "y": 180 } },
+    { "when": { "facing": "west"  }, "apply": { "model": "farmies:block/utensils/cooking_pot", "y": 270 } },
+
+    { "when": { "has_support": "true", "facing": "north" }, "apply": { "model": "farmies:block/utensils/support" } },
+    { "when": { "has_support": "true", "facing": "east"  }, "apply": { "model": "farmies:block/utensils/support", "y": 90 } },
+    { "when": { "has_support": "true", "facing": "south" }, "apply": { "model": "farmies:block/utensils/support", "y": 180 } },
+    { "when": { "has_support": "true", "facing": "west"  }, "apply": { "model": "farmies:block/utensils/support", "y": 270 } }
+  ]
+}

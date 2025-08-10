@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "farmies:block/machines/dehydrator"
+    },
+    "facing=east": {
+      "model": "farmies:block/machines/dehydrator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "farmies:block/machines/dehydrator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farmies:block/machines/dehydrator",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "farmies:frying",
+  "ingredients": [
+    { "item": "minecraft:egg" }
+  ],
+  "result": { "id": "farmies:fried_egg", "count": 1 }
+}

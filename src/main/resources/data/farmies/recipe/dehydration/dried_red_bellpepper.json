@@ -1,0 +1,5 @@
+{
+  "type": "farmies:dehydration",
+  "ingredient": { "item": "farmies:red_bellpepper" },
+  "result": { "id": "farmies:dried_red_bellpepper", "count": 1 }
+}

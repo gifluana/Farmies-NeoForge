@@ -29,11 +29,11 @@ public class FItems {
     public static final DeferredItem<Item> ONION = ITEMS.register("onion", () -> new Item(new Item.Properties().food(FFoodProperties.ONION)));
     public static final DeferredItem<Item> GARLIC = ITEMS.register("garlic", () -> new Item(new Item.Properties().food(FFoodProperties.GARLIC)));
     public static final DeferredItem<Item> CORN = ITEMS.register("corn", () -> new Item(new Item.Properties().food(FFoodProperties.CORN)));
-   public static final DeferredItem<Item> RED_BELLPEPPER = ITEMS.register("red_bellpepper", () -> new Item(new Item.Properties().food(FFoodProperties.BELLPEPPER)));
+    public static final DeferredItem<Item> RED_BELLPEPPER = ITEMS.register("red_bellpepper", () -> new Item(new Item.Properties().food(FFoodProperties.BELLPEPPER)));
     public static final DeferredItem<Item> YELLOW_BELLPEPPER = ITEMS.register("yellow_bellpepper", () -> new Item(new Item.Properties().food(FFoodProperties.BELLPEPPER)));
     public static final DeferredItem<Item> GREEN_BELLPEPPER = ITEMS.register("green_bellpepper", () -> new Item(new Item.Properties().food(FFoodProperties.BELLPEPPER)));
     public static final DeferredItem<Item> EGGPLANT = ITEMS.register("eggplant", () -> new Item(new Item.Properties().food(FFoodProperties.EGGPLANT)));
-   public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new Item(new Item.Properties().food(FFoodProperties.STRAWBERRY)));
+    public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new Item(new Item.Properties().food(FFoodProperties.STRAWBERRY)));
     public static final DeferredItem<Item> CABBAGE = ITEMS.register("cabbage", () -> new Item(new Item.Properties().food(FFoodProperties.CABBAGE)));
 
     // Ingredients
@@ -44,6 +44,8 @@ public class FItems {
     // Tools
     public static final DeferredItem<Item> SCYTHE = ITEMS.register("scythe", () -> new ScytheItem(new Item.Properties().durability(525).stacksTo(1)));
 
+    // Foods
+    public static final DeferredItem<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(FFoodProperties.CABBAGE)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

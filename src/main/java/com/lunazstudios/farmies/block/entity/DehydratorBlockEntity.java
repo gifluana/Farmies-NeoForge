@@ -1,11 +1,11 @@
 package com.lunazstudios.farmies.block.entity;
 
 import com.lunazstudios.farmies.energy.FEnergyStorage;
-import com.lunazstudios.farmies.recipe.GrinderRecipe;
-import com.lunazstudios.farmies.recipe.GrinderRecipeInput;
+import com.lunazstudios.farmies.recipe.DehydratorRecipe;
+import com.lunazstudios.farmies.recipe.DehydratorRecipeInput;
 import com.lunazstudios.farmies.registry.FBlockEntities;
 import com.lunazstudios.farmies.registry.FRecipes;
-import com.lunazstudios.farmies.screen.GrinderMenu;
+import com.lunazstudios.farmies.screen.DehydratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -14,7 +14,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.*;
+import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -32,8 +34,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
-    public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+public class DehydratorBlockEntity extends BlockEntity implements MenuProvider {
+    public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -66,7 +68,7 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return (slot == OUTPUT_SLOT || slot == OUTPUT_EXTRA_SLOT)
+            return (slot == OUTPUT_SLOT)
                     ? itemHandler.extractItem(slot, amount, simulate)
                     : ItemStack.EMPTY;
         }
@@ -84,12 +86,11 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
-    private static final int OUTPUT_EXTRA_SLOT = 2;
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 50;
-    private final int DEFAULT_MAX_PROGRESS = 50;
+    private int maxProgress = 250;
+    private final int DEFAULT_MAX_PROGRESS = 250;
 
     private static final int ENERGY_CRAFT_AMOUNT = 25;
 
@@ -104,17 +105,14 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         };
     }
 
-    public float cogRotation = 0f;
-    public float cogSpeed = 0f;
-
-    public GrinderBlockEntity(BlockPos pos, BlockState state) {
-        super(FBlockEntities.GRINDER_BE.get(), pos, state);
+    public DehydratorBlockEntity(BlockPos pos, BlockState state) {
+        super(FBlockEntities.DEHYDRATOR_BE.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
                 return switch (i) {
-                    case 0 -> GrinderBlockEntity.this.progress;
-                    case 1 -> GrinderBlockEntity.this.maxProgress;
+                    case 0 -> DehydratorBlockEntity.this.progress;
+                    case 1 -> DehydratorBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -122,8 +120,8 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
             @Override
             public void set(int i, int j) {
                 switch (i) {
-                    case 0: GrinderBlockEntity.this.progress = j;
-                    case 1: GrinderBlockEntity.this.maxProgress = j;
+                    case 0: DehydratorBlockEntity.this.progress = j;
+                    case 1: DehydratorBlockEntity.this.maxProgress = j;
                 };
             }
 
@@ -132,14 +130,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
                 return 2;
             }
         };
-    }
-
-    public boolean isAnimating() {
-        return progress > 0 || (hasInput() && ENERGY_STORAGE.getEnergyStored() > 0);
-    }
-
-    private boolean hasInput() {
-        return !itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
@@ -167,22 +157,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    public void clientTick(Level level, BlockPos pos, BlockState state) {
-        boolean animating = isAnimating();
-
-        float targetSpeed = animating ? 50f : 0f;
-        float accel = 0.5f;
-
-        if (cogSpeed < targetSpeed) {
-            cogSpeed = Math.min(cogSpeed + accel, targetSpeed);
-        } else if (cogSpeed > targetSpeed) {
-            cogSpeed = Math.max(cogSpeed - accel, targetSpeed);
-        }
-
-        cogRotation += cogSpeed;
-        if (cogRotation > 360f) cogRotation -= 360f;
-    }
-
     private void useEnergyForCrafting() {
         this.ENERGY_STORAGE.extractEnergy(ENERGY_CRAFT_AMOUNT, false);
     }
@@ -193,17 +167,13 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<DehydratorRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return;
-        GrinderRecipe r = recipe.get().value();
+        DehydratorRecipe r = recipe.get().value();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         mergeStack(OUTPUT_SLOT, r.outputItem());
-
-        if (!r.extraOutput().isEmpty() && level.random.nextFloat() < r.extraChance()) {
-            mergeStack(OUTPUT_EXTRA_SLOT, r.extraOutput());
-        }
     }
 
     private void mergeStack(int slot, ItemStack stackToAdd) {
@@ -234,7 +204,7 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<DehydratorRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) {
             return false;
         }
@@ -247,8 +217,8 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         return this.ENERGY_STORAGE.getEnergyStored() >= ENERGY_CRAFT_AMOUNT * maxProgress;
     }
 
-    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe() {
-        return this.level.getRecipeManager().getRecipeFor(FRecipes.GRINDER_TYPE.get(), new GrinderRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+    private Optional<RecipeHolder<DehydratorRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager().getRecipeFor(FRecipes.DEHYDRATOR_TYPE.get(), new DehydratorRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
@@ -267,20 +237,20 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
 
-        this.progress = tag.getInt("grinder.progress");
-        this.maxProgress = tag.getInt("grinder.max_progress");
+        this.progress = tag.getInt("dehydrator.progress");
+        this.maxProgress = tag.getInt("dehydrator.max_progress");
         this.itemHandler.deserializeNBT(provider, tag.getCompound("inventory"));
 
-        this.ENERGY_STORAGE.setEnergy(tag.getInt("grinder.energy"));
+        this.ENERGY_STORAGE.setEnergy(tag.getInt("dehydrator.energy"));
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         tag.put("inventory", itemHandler.serializeNBT(provider));
-        tag.putInt("grinder.progress", this.progress);
-        tag.putInt("grinder.max_progress", this.maxProgress);
+        tag.putInt("dehydrator.progress", this.progress);
+        tag.putInt("dehydrator.max_progress", this.maxProgress);
 
-        tag.putInt("grinder.energy", ENERGY_STORAGE.getEnergyStored());
+        tag.putInt("dehydrator.energy", ENERGY_STORAGE.getEnergyStored());
 
         super.saveAdditional(tag, provider);
     }
@@ -306,11 +276,11 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("blockentity.farmies.grinder");
+        return Component.translatable("blockentity.farmies.dehydrator");
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new GrinderMenu(i, inventory, this, this.data);
+        return new DehydratorMenu(i, inventory, this, this.data);
     }
 }
