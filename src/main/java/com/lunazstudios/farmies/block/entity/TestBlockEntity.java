@@ -13,47 +13,30 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class TestBlockEntity extends BlockEntity {
-    private String activeClip = "idle";
-    private boolean loop = true;
-    private long clipStartGameTime = 0L;
+    private String targetState = "closed";
 
     public TestBlockEntity(BlockPos pos, BlockState blockState) {
         super(FBlockEntities.TEST_BLOCK_BE.get(), pos, blockState);
     }
 
-    public String getActiveClip() { return activeClip; }
-    public boolean isLooping() { return loop; }
-    public long getClipStartGameTime() { return clipStartGameTime; }
+    public String getTargetState() { return targetState; }
 
-    public void setClip(String clip, boolean loop) {
-        this.activeClip = clip;
-        this.loop = loop;
-        this.clipStartGameTime = (level != null) ? level.getGameTime() : 0L;
+    public void toggleServer(long nowGT) {
+        targetState = targetState.equals("open") ? "closed" : "open";
         setChanged();
-        if (level != null && !level.isClientSide) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
-    }
-
-    public void toggleClip() {
-        if ("idle".equals(activeClip)) setClip("on", true);
-        else setClip("idle", true);
+        if (!level.isClientSide) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putString("Clip", activeClip);
-        tag.putBoolean("Loop", loop);
-        tag.putLong("ClipStartGT", clipStartGameTime);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider r) {
+        super.saveAdditional(tag, r);
+        tag.putString("TargetState", targetState);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        activeClip = tag.getString("Clip");
-        loop = tag.getBoolean("Loop");
-        clipStartGameTime = tag.getLong("ClipStartGT");
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider r) {
+        super.loadAdditional(tag, r);
+        targetState = tag.getString("TargetState");
     }
 
     @Override

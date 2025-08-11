@@ -38,12 +38,10 @@ public class TestBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof TestBlockEntity tbe) {
-                tbe.toggleClip();
-            }
+            var be = level.getBlockEntity(pos);
+            if (be instanceof TestBlockEntity tbe) tbe.toggleServer(level.getGameTime());
         }
         return ItemInteractionResult.SUCCESS;
     }
