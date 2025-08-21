@@ -38,6 +38,7 @@ public class FTabs {
                         output.accept(FItems.EGGPLANT.get());
                         output.accept(FItems.STRAWBERRY.get());
                         output.accept(FItems.CABBAGE.get());
+                        output.accept(FBlocks.CORN_CRATE.get());
                     }).build());
 
     public static final Supplier<CreativeModeTab> SEEDS_TAB =

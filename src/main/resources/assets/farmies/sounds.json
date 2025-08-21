@@ -4,5 +4,17 @@
     "sounds": [
       "farmies:frying_pan_frying"
     ]
+  },
+  "wooden_door_opening": {
+    "subtitle": "sounds.farmies.wooden_door_opening",
+    "sounds": [
+      "farmies:wooden_door_opening"
+    ]
+  },
+  "wooden_door_closing": {
+    "subtitle": "sounds.farmies.wooden_door_closing",
+    "sounds": [
+      "farmies:wooden_door_closing"
+    ]
   }
 }

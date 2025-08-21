@@ -14,6 +14,8 @@ public class FSounds {
             DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Farmies.MOD_ID);
 
     public static final Supplier<SoundEvent> FRYING_PAN_FRYING = registerSoundEvent("frying_pan_frying");
+    public static final Supplier<SoundEvent> WOODEN_DOOR_OPENING = registerSoundEvent("wooden_door_opening");
+    public static final Supplier<SoundEvent> WOODEN_DOOR_CLOSING = registerSoundEvent("wooden_door_closing");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Farmies.MOD_ID, name);

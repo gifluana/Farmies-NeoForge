@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "farmies:block/crates/corn"
+    },
+    "facing=east": {
+      "model": "farmies:block/crates/corn",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "farmies:block/crates/corn",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farmies:block/crates/corn",
+      "y": 270
+    }
+  }
+}

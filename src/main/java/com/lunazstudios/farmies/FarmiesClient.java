@@ -1,17 +1,14 @@
 package com.lunazstudios.farmies;
 
 import com.lunazstudios.farmies.client.model.GrinderCogModel;
-import com.lunazstudios.farmies.client.renderer.CookingPotRenderer;
-import com.lunazstudios.farmies.client.renderer.FryingPanRenderer;
-import com.lunazstudios.farmies.client.renderer.GrinderRenderer;
-import com.lunazstudios.farmies.client.renderer.TestBlockRenderer;
+import com.lunazstudios.farmies.client.model.FarmiesModelGeometry;
+import com.lunazstudios.farmies.client.renderer.*;
 import com.lunazstudios.farmies.registry.FBlockEntities;
 import com.lunazstudios.farmies.registry.FMenus;
-import com.lunazstudios.farmies.screen.CoalGeneratorMenu;
 import com.lunazstudios.farmies.screen.CoalGeneratorScreen;
 import com.lunazstudios.farmies.screen.DehydratorScreen;
 import com.lunazstudios.farmies.screen.GrinderScreen;
-import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -19,6 +16,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -48,6 +46,12 @@ public class FarmiesClient {
         event.registerBlockEntityRenderer(FBlockEntities.FRYING_PAN_BE.get(), FryingPanRenderer::new);
         event.registerBlockEntityRenderer(FBlockEntities.COOKING_POT_BE.get(), CookingPotRenderer::new);
         event.registerBlockEntityRenderer(FBlockEntities.TEST_BLOCK_BE.get(), TestBlockRenderer::new);
+        event.registerBlockEntityRenderer(FBlockEntities.CABINET_BE.get(), CabinetRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register(ResourceLocation.fromNamespaceAndPath(Farmies.MOD_ID, "farmies_model"), new FarmiesModelGeometry.Loader());
     }
 
     @SubscribeEvent

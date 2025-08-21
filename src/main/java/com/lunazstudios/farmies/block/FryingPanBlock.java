@@ -90,7 +90,6 @@ public class FryingPanBlock extends BaseEntityBlock {
         return SHAPES[shape];
     }
 
-
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;

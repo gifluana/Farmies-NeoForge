@@ -2,6 +2,7 @@ package com.lunazstudios.farmies.registry;
 
 import com.lunazstudios.farmies.Farmies;
 import com.lunazstudios.farmies.block.*;
+import com.lunazstudios.farmies.block.properties.CabinetWood;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -43,6 +44,15 @@ public class FBlocks {
     public static final DeferredBlock<Block> FRYING_PAN = registerBlock("frying_pan", () -> new FryingPanBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> COOKING_POT = registerBlock("cooking_pot", () -> new CookingPotBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
 
+    // Furniture
+    public static final DeferredBlock<Block> SPRUCE_CABINET = registerBlock("spruce_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), CabinetWood.SPRUCE));
+    public static final DeferredBlock<Block> CHERRY_CABINET = registerBlock("cherry_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), CabinetWood.CHERRY));
+    public static final DeferredBlock<Block> BIRCH_CABINET = registerBlock("birch_cabinet", () -> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops(), CabinetWood.BIRCH));
+
+    // Crates
+    public static final DeferredBlock<Block> CORN_CRATE = registerBlock("corn_crate", () -> new CrateBlock(BlockBehaviour.Properties.of().strength(3f)));
+
+
     // Helper Methods
     private static <T extends Block> DeferredBlock<T> registerBlockOnly(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
@@ -60,5 +70,4 @@ public class FBlocks {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
-    }
-}
+    }}

@@ -37,6 +37,14 @@ public class FBlockEntities {
             BLOCK_ENTITIES.register("test_block_be", () -> BlockEntityType.Builder.of(
                     TestBlockEntity::new, FBlocks.TEST_BLOCK.get()).build(null));
 
+    public static final Supplier<BlockEntityType<CabinetBlockEntity>> CABINET_BE =
+            BLOCK_ENTITIES.register("cabinet_be", () -> BlockEntityType.Builder.of(
+                    CabinetBlockEntity::new,
+                    FBlocks.CHERRY_CABINET.get(),
+                    FBlocks.BIRCH_CABINET.get(),
+                    FBlocks.SPRUCE_CABINET.get()
+            ).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
